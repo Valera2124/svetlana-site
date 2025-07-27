@@ -1359,3 +1359,11 @@ body {
     font-size: 16px;
   }
 }
+.side-nav-glass.hidden {
+  display: none;
+}
+
+.side-nav-glass.show {
+  display: flex;
+}
+
