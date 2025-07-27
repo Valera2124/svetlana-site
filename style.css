@@ -1261,6 +1261,23 @@ body {
   font-size: 20px;
   color: #1a202c;
 }
+#modal {
+  display: none;
+  /* другие стили */
+}
+
+#modal.active {
+  display: flex;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: flex !important;
+}
+
 
 .info-card p {
   font-size: 16px;
