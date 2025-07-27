@@ -7,6 +7,111 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .side-nav-glass {
+      background: #2f2f2f;
+      color: #fff;
+      width: 220px;
+      min-height: 100vh;
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .side-nav-glass.open {
+      transform: translateX(0);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .nav-item:hover {
+      background: #444;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .top-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .emblem-top {
+      max-width: 100px;
+    }
+
+    .frame {
+      background: #f4f7fa;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      color: #007bff;
+    }
+
+    .lead {
+      font-size: 16px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .btn {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    /* Модальное окно */
     .modal {
       display: none;
       position: fixed;
@@ -19,9 +124,11 @@
       justify-content: center;
       align-items: center;
     }
+
     .modal.active {
       display: flex;
     }
+
     .modal-content {
       background: #fff;
       padding: 30px;
@@ -30,6 +137,7 @@
       width: 90%;
       position: relative;
     }
+
     .modal-close {
       position: absolute;
       top: 15px;
@@ -39,6 +147,7 @@
       border: none;
       cursor: pointer;
     }
+
     .form-success {
       display: none;
       margin-top: 20px;
@@ -46,11 +155,48 @@
       font-weight: bold;
       text-align: center;
     }
+
+    /* Кнопка меню для мобильных */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: #007bff;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      z-index: 10000;
+    }
+
+    @media (max-width: 768px) {
+      .side-nav-glass {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 9998;
+      }
+
+      .side-nav-glass.open {
+        transform: translateX(0);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .content {
+        margin-left: 0;
+        padding-top: 60px;
+      }
+    }
   </style>
 </head>
 <body>
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
- <nav class="side-nav-glass">
+
+<button class="menu-toggle" onclick="toggleMenu()">☰ Меню</button>
+
+<nav class="side-nav-glass">
   <a href="index.html" class="nav-item">
     <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
       <path d="M3 9L12 2L21 9V20C21 20.6 20.6 21 20 21H4C3.4 21 3 20.6 3 20V9Z" stroke="currentColor" stroke-width="2"/>
@@ -77,116 +223,126 @@
   </a>
 </nav>
 
+<main class="content">
+  <header class="top-header">
+    <img src="court-emblem.png" alt="Эмблема" class="emblem-top" />
+  </header>
 
-  <main class="content">
-    <header class="top-header">
-      <img src="court-emblem.png" alt="Эмблема" class="emblem-top" />
-    </header>
-
-    <section class="frame hero">
-      <div class="hero-text">
-        <h1>Арбитражный управляющий<br><span class="highlight">Принеслик Светлана Викторовна</span></h1>
-        <p class="lead">
-          Помогаю пройти процедуру банкротства <strong>законно и эффективно</strong> — как физическим, так и юридическим лицам.
-        </p>
-      </div>
-    </section>
-
-    <section class="frame key-points">
-      <h2>Что я делаю</h2>
-      <ul class="checklist">
-        <li>🔍 Анализирую финансовое состояние должника</li>
-        <li>🗂 Провожу собрания кредиторов</li>
-        <li>🏢 Управляю имуществом и активами</li>
-        <li>⚖️ Представляю интересы в судах и госорганах</li>
-        <li>✅ Помогаю избавиться от долгов законно</li>
-      </ul>
-    </section>
-
-    <section class="frame cta">
-      <h2>Нужна помощь в банкротстве?</h2>
-      <p>Оставьте заявку — я свяжусь с вами в течение рабочего дня.</p>
-      <button class="btn" onclick="openForm('Заявка с главной')">Оставить заявку</button>
-    </section>
-  </main>
-
-  <!-- Модальное окно -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <button id="modal-close" class="modal-close">✖</button>
-      <h2 id="modal-title">Услуга</h2>
-      <form id="modal-form" action="https://formspree.io/f/manbjwwn" method="POST">
-        <input type="text" name="name" placeholder="Ваше имя" required />
-        <input type="tel" name="phone" placeholder="Телефон" required />
-        <textarea name="message" rows="3" placeholder="Комментарий (необязательно)"></textarea>
-        <button type="submit" class="btn">Отправить заявку</button>
-      </form>
-      <div id="modal-success" class="form-success">Спасибо! Ваша заявка отправлена.</div>
+  <section class="frame hero">
+    <div class="hero-text">
+      <h1>Арбитражный управляющий<br><span class="highlight">Принеслик Светлана Викторовна</span></h1>
+      <p class="lead">
+        Помогаю пройти процедуру банкротства <strong>законно и эффективно</strong> — как физическим, так и юридическим лицам.
+      </p>
     </div>
+  </section>
+
+  <section class="frame key-points">
+    <h2>Что я делаю</h2>
+    <ul class="checklist">
+      <li>🔍 Анализирую финансовое состояние должника</li>
+      <li>🗂 Провожу собрания кредиторов</li>
+      <li>🏢 Управляю имуществом и активами</li>
+      <li>⚖️ Представляю интересы в судах и госорганах</li>
+      <li>✅ Помогаю избавиться от долгов законно</li>
+    </ul>
+  </section>
+
+  <section class="frame cta">
+    <h2>Нужна помощь в банкротстве?</h2>
+    <p>Оставьте заявку — я свяжусь с вами в течение рабочего дня.</p>
+    <button class="btn" onclick="openForm('Заявка с главной')">Оставить заявку</button>
+  </section>
+</main>
+
+<!-- Модальное окно -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <button id="modal-close" class="modal-close">✖</button>
+    <h2 id="modal-title">Услуга</h2>
+    <form id="modal-form" action="https://formspree.io/f/manbjwwn" method="POST">
+      <input type="text" name="name" placeholder="Ваше имя" required />
+      <input type="tel" name="phone" placeholder="Телефон" required />
+      <textarea name="message" rows="3" placeholder="Комментарий (необязательно)"></textarea>
+      <button type="submit" class="btn">Отправить заявку</button>
+    </form>
+    <div id="modal-success" class="form-success">Спасибо! Ваша заявка отправлена.</div>
   </div>
+</div>
 
-  <script>
-    function openForm(serviceTitle) {
-      const modal = document.getElementById("modal");
-      const title = document.getElementById("modal-title");
-      const form = document.getElementById("modal-form");
-      const successMessage = document.getElementById("modal-success");
+<script>
+  function openForm(serviceTitle) {
+    const modal = document.getElementById("modal");
+    const title = document.getElementById("modal-title");
+    const form = document.getElementById("modal-form");
+    const successMessage = document.getElementById("modal-success");
 
-      title.textContent = serviceTitle;
-      modal.classList.add("active");
+    title.textContent = serviceTitle;
+    modal.classList.add("active");
+    form.style.display = "block";
+    successMessage.style.display = "none";
+    form.reset();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("modal-close");
+    const form = document.getElementById("modal-form");
+    const successMessage = document.getElementById("modal-success");
+
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("active");
       form.style.display = "block";
       successMessage.style.display = "none";
-      form.reset();
-    }
+    });
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const modal = document.getElementById("modal");
-      const closeBtn = document.getElementById("modal-close");
-      const form = document.getElementById("modal-form");
-      const successMessage = document.getElementById("modal-success");
-
-      closeBtn.addEventListener("click", () => {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
         modal.classList.remove("active");
         form.style.display = "block";
         successMessage.style.display = "none";
-      });
-
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          modal.classList.remove("active");
-          form.style.display = "block";
-          successMessage.style.display = "none";
-        }
-      });
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const data = new FormData(form);
-
-        fetch(form.action, {
-          method: "POST",
-          body: data,
-          headers: { Accept: "application/json" }
-        })
-          .then((response) => {
-            if (response.ok) {
-              form.reset();
-              form.style.display = "none";
-              successMessage.style.display = "block";
-            } else {
-              alert("Ошибка при отправке. Попробуйте позже.");
-            }
-          })
-          .catch(() => {
-            alert("Ошибка сети.");
-          });
-      });
+      }
     });
-  </script>
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      })
+        .then((response) => {
+          if (response.ok) {
+            form.reset();
+            form.style.display = "none";
+            successMessage.style.display = "block";
+          } else {
+            alert("Ошибка при отправке. Попробуйте позже.");
+          }
+        })
+        .catch(() => {
+          alert("Ошибка сети.");
+        });
+    });
+  });
+
+  // Мобильное меню
+  function toggleMenu() {
+    document.querySelector('.side-nav-glass').classList.toggle('open');
+  }
+
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        document.querySelector('.side-nav-glass').classList.remove('open');
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
 
-
-</body>
-</html>
 
