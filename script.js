@@ -4,10 +4,13 @@ function openForm(serviceTitle) {
   const modal = document.getElementById("modal");
   const title = document.getElementById("modal-title");
   const form = document.getElementById("modal-form");
+  const successMessage = document.getElementById("modal-success");
 
   title.textContent = serviceTitle;
   modal.classList.add("active");
-  form.reset(); // Очистка формы
+  form.style.display = "block";
+  successMessage.style.display = "none";
+  form.reset();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,14 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("modal-form");
   const successMessage = document.getElementById("modal-success");
 
-  // Закрытие по крестику
   closeBtn.addEventListener("click", () => {
     modal.classList.remove("active");
     form.style.display = "block";
     successMessage.style.display = "none";
   });
 
-  // Закрытие по клику вне окна
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.classList.remove("active");
@@ -32,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Обработка отправки формы
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     const data = new FormData(form);
@@ -40,9 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(form.action, {
       method: "POST",
       body: data,
-      headers: {
-        Accept: "application/json",
-      },
+      headers: { Accept: "application/json" }
     })
       .then((response) => {
         if (response.ok) {
@@ -58,14 +56,3 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-
-// Функция для бокового меню (если используешь mobile view)
-function toggleMenu() {
-  const nav = document.getElementById('sideNav');
-  nav.classList.toggle('show');
-  nav.classList.toggle('hidden');
-}
-
-  nav.classList.toggle('show');
-  nav.classList.toggle('hidden');
-}
