@@ -70,6 +70,9 @@
       margin-left: 220px;
       padding: 20px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .frame {
@@ -77,6 +80,10 @@
       padding: 20px;
       border-radius: 12px;
       margin-bottom: 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
     }
 
     .contacts-frame p {
@@ -85,7 +92,7 @@
 
     .emblem img {
       max-width: 100px;
-      margin-bottom: 20px;
+      margin: 20px 0;
     }
 
     .nav-header {
@@ -100,10 +107,34 @@
       height: auto;
     }
 
+    .footer-logo {
+      text-align: center;
+      margin-top: auto;
+      padding: 20px;
+    }
+
+    .footer-logo-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
     @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
       .side-nav-glass {
         transform: translateX(-100%);
         position: fixed;
+        width: 200px;
       }
 
       .side-nav-glass.open {
@@ -117,6 +148,16 @@
       .content {
         margin-left: 0;
         padding-top: 60px;
+        align-items: center;
+      }
+
+      .footer-logo-img {
+        width: 70px;
+        height: 70px;
+      }
+
+      .footer-text {
+        font-size: 1rem;
       }
     }
   </style>
@@ -181,9 +222,11 @@
       <p><strong>Email:</strong> info@example.com</p>
     </section>
   </main>
-<footer class="footer-logo">
-  <img src="logotip.png" alt="Логотип" class="footer-logo-img" />
-  <h2 class="footer-text">Принеслик С.В.</h2>
-</footer>
+
+  <footer class="footer-logo">
+    <img src="logotip.png" alt="Логотип" class="footer-logo-img" />
+    <h2 class="footer-text">Принеслик С.В.</h2>
+  </footer>
 </body>
 </html>
+
