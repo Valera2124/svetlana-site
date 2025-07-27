@@ -1512,3 +1512,51 @@ body {
   border: 2px solid #fff; /* белая рамка */
   object-fit: cover; /* обрезает и центрирует */
 }
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.footer-logo-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid #ffffff55;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.footer-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Адаптация для планшетов */
+@media (max-width: 768px) {
+  .footer-logo-img {
+    width: 75px;
+    height: 75px;
+  }
+
+  .footer-text {
+    font-size: 1.2rem;
+  }
+}
+
+/* Адаптация для телефонов */
+@media (max-width: 480px) {
+  .footer-logo-img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .footer-text {
+    font-size: 1.05rem;
+  }
+}
