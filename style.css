@@ -1426,3 +1426,57 @@ body {
     display: block;
   }
 }
+/* Бургер-кнопка */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 10000;
+  font-size: 24px;
+  background: #2c2c2c;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+  .side-nav-glass {
+    position: fixed;
+    left: -220px;
+    top: 0;
+    height: 100vh;
+    width: 200px;
+    background: #2c2c2c;
+    transition: left 0.3s ease;
+    z-index: 9999;
+  }
+
+  .side-nav-glass.open {
+    left: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .content {
+    margin-left: 0 !important;
+    padding: 20px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+  }
+
+  .nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+}
