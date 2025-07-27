@@ -6,7 +6,48 @@
   <title>Главная — Принеслик С.В.</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script defer src="modal.js"></script> <!-- обязательно нужен -->
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .form-success {
+      display: none;
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+  <script defer src="modal.js"></script>
 </head>
 <body>
 <nav class="side-nav-glass">
@@ -36,55 +77,54 @@
   </a>
 </nav>
 
-    <main class="content">
-      <header class="top-header">
-        <img src="court-emblem.png" alt="Эмблема" class="emblem-top" />
-      </header>
+<main class="content">
+  <header class="top-header">
+    <img src="court-emblem.png" alt="Эмблема" class="emblem-top" />
+  </header>
 
-      <section class="frame hero">
-        <div class="hero-text">
-          <h1>Арбитражный управляющий<br><span class="highlight">Принеслик Светлана Викторовна </span></h1>
-          <p class="lead">
-            Помогаю пройти процедуру банкротства <strong>законно и эффективно</strong> — как физическим, так и юридическим лицам.
-          </p>
-          <button class="btn" onclick="openForm('Первая консультация')">Получить консультацию</button>
-        </div>
-      </section>
+  <section class="frame hero">
+    <div class="hero-text">
+      <h1>Арбитражный управляющий<br><span class="highlight">Принеслик Светлана Викторовна</span></h1>
+      <p class="lead">
+        Помогаю пройти процедуру банкротства <strong>законно и эффективно</strong> — как физическим, так и юридическим лицам.
+      </p>
+      <button class="btn" onclick="openForm('Первая консультация')">Получить консультацию</button>
+    </div>
+  </section>
 
-      <section class="frame key-points">
-        <h2>Что я делаю</h2>
-        <ul class="checklist">
-          <li>🔍 Анализирую финансовое состояние должника</li>
-          <li>🗂 Провожу собрания кредиторов</li>
-          <li>🏢 Управляю имуществом и активами</li>
-          <li>⚖️ Представляю интересы в судах и госорганах</li>
-          <li>✅ Помогаю избавиться от долгов законно</li>
-        </ul>
-      </section>
+  <section class="frame key-points">
+    <h2>Что я делаю</h2>
+    <ul class="checklist">
+      <li>🔍 Анализирую финансовое состояние должника</li>
+      <li>🗂 Провожу собрания кредиторов</li>
+      <li>🏢 Управляю имуществом и активами</li>
+      <li>⚖️ Представляю интересы в судах и госорганах</li>
+      <li>✅ Помогаю избавиться от долгов законно</li>
+    </ul>
+  </section>
 
-      <section class="frame cta">
-        <h2>Нужна помощь в банкротстве?</h2>
-        <p>Оставьте заявку — я свяжусь с вами в течение рабочего дня.</p>
-        <button class="btn" onclick="openForm('Заявка с главной')">Оставить заявку</button>
-      </section>
-    </main>
-  </div>
-  <!-- Модальное окно -->
+  <section class="frame cta">
+    <h2>Нужна помощь в банкротстве?</h2>
+    <p>Оставьте заявку — я свяжусь с вами в течение рабочего дня.</p>
+    <button class="btn" onclick="openForm('Заявка с главной')">Оставить заявку</button>
+  </section>
+</main>
+
+<!-- Модальное окно -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <button id="modal-close" class="modal-close">✖</button>
     <h2 id="modal-title">Услуга</h2>
     <form id="modal-form" action="https://formspree.io/f/manbjwwn" method="POST">
-  <input type="text" name="name" placeholder="Ваше имя" required />
-  <input type="tel" name="phone" placeholder="Телефон" required />
-  <textarea name="message" rows="3" placeholder="Комментарий (необязательно)"></textarea>
-  <button type="submit" class="btn">Отправить заявку</button>
-</form>
-<div id="modal-success" class="form-success">Спасибо! Ваша заявка отправлена.</div>
-<div class="nav-header">
-  <img src="logo.svg" alt="Логотип" />
-  <h2>Принеслик С.В.</h2>
+      <input type="text" name="name" placeholder="Ваше имя" required />
+      <input type="tel" name="phone" placeholder="Телефон" required />
+      <textarea name="message" rows="3" placeholder="Комментарий (необязательно)"></textarea>
+      <button type="submit" class="btn">Отправить заявку</button>
+    </form>
+    <div id="modal-success" class="form-success">Спасибо! Ваша заявка отправлена.</div>
+  </div>
 </div>
-</div>
+
 </body>
 </html>
+
