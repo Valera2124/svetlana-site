@@ -1498,3 +1498,17 @@ body {
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
+.nav-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.nav-header img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%; /* делает круг */
+  border: 2px solid #fff; /* белая рамка */
+  object-fit: cover; /* обрезает и центрирует */
+}
