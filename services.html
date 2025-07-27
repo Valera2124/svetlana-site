@@ -6,93 +6,317 @@
   <title>Услуги — Принеслик С.В.</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script defer src="modal.js"></script> <!-- если есть модальное окно -->
+  <script defer src="modal.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: #007bff;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      z-index: 10000;
+    }
+
+    .side-nav-glass {
+      background: #2f2f2f;
+      color: #fff;
+      width: 220px;
+      min-height: 100vh;
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .side-nav-glass.open {
+      transform: translateX(0);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .nav-item:hover {
+      background: #444;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .services-list h1,
+    .services-cta h2 {
+      margin-top: 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: #f4f7fa;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-card .icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .services-cta {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .btn {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .btn-arrow {
+      font-size: 24px;
+      margin: 10px 0;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+    }
+
+    .modal-content form input,
+    .modal-content form textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .nav-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .nav-header img {
+      max-height: 40px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .side-nav-glass {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 9998;
+      }
+
+      .side-nav-glass.open {
+        transform: translateX(0);
+      }
+
+      .content {
+        margin-left: 0;
+        padding-top: 70px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      document.querySelector('.side-nav-glass').classList.toggle('open');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            document.querySelector('.side-nav-glass').classList.remove('open');
+          }
+        });
+      });
+
+      const modal = document.getElementById('modal');
+      const closeBtn = document.getElementById('modal-close');
+      closeBtn?.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+    });
+
+    function openForm(title) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal').style.display = 'flex';
+    }
+  </script>
 </head>
 <body>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Меню</button>
+
   <nav class="side-nav-glass">
-  <a href="index.html" class="nav-item">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
-      <path d="M3 9L12 2L21 9V20C21 20.6 20.6 21 20 21H4C3.4 21 3 20.6 3 20V9Z" stroke="currentColor" stroke-width="2"/>
-    </svg>
-    <span>Главная</span>
-  </a>
-  <a href="about.html" class="nav-item">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
-      <path d="M12 12C14.2 12 16 10.2 16 8C16 5.8 14.2 4 12 4C9.8 4 8 5.8 8 8C8 10.2 9.8 12 12 12ZM12 14C9.3 14 4 15.3 4 18V20H20V18C20 15.3 14.7 14 12 14Z" stroke="currentColor" stroke-width="2"/>
-    </svg>
-    <span>Обо мне</span>
-  </a>
-  <a href="services.html" class="nav-item">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
-      <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="2"/>
-    </svg>
-    <span>Услуги</span>
-  </a>
-  <a href="contact.html" class="nav-item">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
-      <path d="M4 4H20V20H4V4ZM4 4L12 13L20 4" stroke="currentColor" stroke-width="2"/>
-    </svg>
-    <span>Контакты</span>
-  </a>
-</nav>
+    <a href="index.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M3 9L12 2L21 9V20C21 20.6 20.6 21 20 21H4C3.4 21 3 20.6 3 20V9Z" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <span>Главная</span>
+    </a>
+    <a href="about.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M12 12C14.2 12 16 10.2 16 8C16 5.8 14.2 4 12 4C9.8 4 8 5.8 8 8C8 10.2 9.8 12 12 12ZM12 14C9.3 14 4 15.3 4 18V20H20V18C20 15.3 14.7 14 12 14Z" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <span>Обо мне</span>
+    </a>
+    <a href="services.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <span>Услуги</span>
+    </a>
+    <a href="contact.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M4 4H20V20H4V4ZM4 4L12 13L20 4" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <span>Контакты</span>
+    </a>
+  </nav>
 
+  <main class="content">
+    <section class="services-list">
+      <h1>Мои услуги</h1>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">📄</div>
+          <h3>Анализ долгов</h3>
+          <p>Комплексная оценка финансового состояния клиента перед подачей заявления о банкротстве.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">⚖️</div>
+          <h3>Сопровождение банкротства</h3>
+          <p>Проведение процедуры банкротства от начала до завершения, включая все судебные этапы.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🤝</div>
+          <h3>Работа с кредиторами</h3>
+          <p>Организация и проведение собраний, защита интересов клиента в переговорах.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">📚</div>
+          <h3>Юридическое консультирование</h3>
+          <p>Подробные консультации по вопросам банкротства, реструктуризации и долгов.</p>
+        </div>
+      </div>
 
-    <main class="content">
-      <section class="services-list">
-  <h1>Мои услуги</h1>
-  <div class="services-grid">
-    <!-- Ряд 1 -->
-    <div class="service-card">
-      <div class="icon">📄</div>
-      <h3>Анализ долгов</h3>
-      <p>Комплексная оценка финансового состояния клиента перед подачей заявления о банкротстве.</p>
-    </div>
-    <div class="service-card">
-      <div class="icon">⚖️</div>
-      <h3>Сопровождение банкротства</h3>
-      <p>Проведение процедуры банкротства от начала до завершения, включая все судебные этапы.</p>
-    </div>
+      <div class="services-cta">
+        <h2>Не нашли нужную услугу?</h2>
+        <p>Опишите вашу ситуацию — я подскажу, как можно решить вопрос законно и эффективно.</p>
+        <div class="btn-arrow">▼</div>
+        <button class="btn" onclick="openForm('Обратная связь с блока услуг')">Оставить заявку</button>
+      </div>
+    </section>
+  </main>
 
-    <!-- Ряд 2 -->
-    <div class="service-card">
-      <div class="icon">🤝</div>
-      <h3>Работа с кредиторами</h3>
-      <p>Организация и проведение собраний, защита интересов клиента в переговорах.</p>
-    </div>
-    <div class="service-card">
-      <div class="icon">📚</div>
-      <h3>Юридическое консультирование</h3>
-      <p>Подробные консультации по вопросам банкротства, реструктуризации и долгов.</p>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close">✖</button>
+      <h2 id="modal-title">Услуга</h2>
+      <form id="modal-form" action="https://formspree.io/f/manbjwwn" method="POST">
+        <input type="text" name="name" placeholder="Ваше имя" required />
+        <input type="tel" name="phone" placeholder="Телефон" required />
+        <textarea name="message" rows="3" placeholder="Комментарий (необязательно)"></textarea>
+        <button type="submit" class="btn">Отправить заявку</button>
+      </form>
     </div>
   </div>
-
-  <!-- Центрированный CTA блок -->
-  <div class="services-cta fade-in">
-    <h2>Не нашли нужную услугу?</h2>
-    <p>Опишите вашу ситуацию — я подскажу, как можно решить вопрос законно и эффективно.</p>
-    <div class="btn-arrow">▼</div>
-    <button class="btn" onclick="openForm('Обратная связь с блока услуг')">Оставить заявку</button>
-  </div>
-</section>
-
-    </main>
-  </div>
-  <!-- Модальное окно -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <button id="modal-close" class="modal-close">✖</button>
-    <h2 id="modal-title">Услуга</h2>
-    <form id="modal-form" action="https://formspree.io/f/manbjwwn" method="POST">
-  <input type="text" name="name" placeholder="Ваше имя" required />
-  <input type="tel" name="phone" placeholder="Телефон" required />
-  <textarea name="message" rows="3" placeholder="Комментарий (необязательно)"></textarea>
-  <button type="submit" class="btn">Отправить заявку</button>
-</form>
-  </div>
-  <div class="nav-header">
-  <img src="logo.svg" alt="Логотип" />
-  <h2>Принеслик С.В.</h2>
-</div>
-</div>
 </body>
 </html>
