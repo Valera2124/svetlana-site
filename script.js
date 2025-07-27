@@ -7,39 +7,23 @@ function openForm(serviceTitle) {
 
   title.textContent = serviceTitle;
   modal.classList.add("active");
-
-  // Можно очистить поля формы при открытии
-  form.reset();
+  form.reset(); // Очистка формы
 }
 
-// Закрытие по кнопке ✖
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("modal");
-  const closeBtn = document.getElementById("modal-close");
-
-  closeBtn.addEventListener("click", () => {
-    modal.classList.remove("active");
-  });
-
-  // Закрытие при клике вне модального окна
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.remove("active");
-    }
-  });
-});
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal");
   const closeBtn = document.getElementById("modal-close");
   const form = document.getElementById("modal-form");
   const successMessage = document.getElementById("modal-success");
 
+  // Закрытие по крестику
   closeBtn.addEventListener("click", () => {
     modal.classList.remove("active");
     form.style.display = "block";
     successMessage.style.display = "none";
   });
 
+  // Закрытие по клику вне окна
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.classList.remove("active");
@@ -48,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Обработка отправки формы
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     const data = new FormData(form);
@@ -68,13 +53,19 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Ошибка при отправке. Попробуйте позже.");
         }
       })
-      .catch((error) => {
+      .catch(() => {
         alert("Ошибка сети.");
       });
   });
 });
+
+// Функция для бокового меню (если используешь mobile view)
 function toggleMenu() {
   const nav = document.getElementById('sideNav');
+  nav.classList.toggle('show');
+  nav.classList.toggle('hidden');
+}
+
   nav.classList.toggle('show');
   nav.classList.toggle('hidden');
 }
