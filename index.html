@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Главная — Принеслик С.В.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="modal.js"></script> <!-- обязательно нужен -->
+</head>
+<body>
+<nav class="side-nav-glass">
+  <a href="index.html" class="nav-item">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M3 9L12 2L21 9V20C21 20.6 20.6 21 20 21H4C3.4 21 3 20.6 3 20V9Z" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <span>Главная</span>
+  </a>
+  <a href="about.html" class="nav-item">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M12 12C14.2 12 16 10.2 16 8C16 5.8 14.2 4 12 4C9.8 4 8 5.8 8 8C8 10.2 9.8 12 12 12ZM12 14C9.3 14 4 15.3 4 18V20H20V18C20 15.3 14.7 14 12 14Z" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <span>Обо мне</span>
+  </a>
+  <a href="services.html" class="nav-item">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <span>Услуги</span>
+  </a>
+  <a href="contact.html" class="nav-item">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M4 4H20V20H4V4ZM4 4L12 13L20 4" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <span>Контакты</span>
+  </a>
+</nav>
+
+    <main class="content">
+      <header class="top-header">
+        <img src="court-emblem.png" alt="Эмблема" class="emblem-top" />
+      </header>
+
+      <section class="frame hero">
+        <div class="hero-text">
+          <h1>Арбитражный управляющий<br><span class="highlight">Принеслик Светлана Викторовна </span></h1>
+          <p class="lead">
+            Помогаю пройти процедуру банкротства <strong>законно и эффективно</strong> — как физическим, так и юридическим лицам.
+          </p>
+          <button class="btn" onclick="openForm('Первая консультация')">Получить консультацию</button>
+        </div>
+      </section>
+
+      <section class="frame key-points">
+        <h2>Что я делаю</h2>
+        <ul class="checklist">
+          <li>🔍 Анализирую финансовое состояние должника</li>
+          <li>🗂 Провожу собрания кредиторов</li>
+          <li>🏢 Управляю имуществом и активами</li>
+          <li>⚖️ Представляю интересы в судах и госорганах</li>
+          <li>✅ Помогаю избавиться от долгов законно</li>
+        </ul>
+      </section>
+
+      <section class="frame cta">
+        <h2>Нужна помощь в банкротстве?</h2>
+        <p>Оставьте заявку — я свяжусь с вами в течение рабочего дня.</p>
+        <button class="btn" onclick="openForm('Заявка с главной')">Оставить заявку</button>
+      </section>
+    </main>
+  </div>
+  <!-- Модальное окно -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <button id="modal-close" class="modal-close">✖</button>
+    <h2 id="modal-title">Услуга</h2>
+    <form id="modal-form" action="https://formspree.io/f/manbjwwn" method="POST">
+  <input type="text" name="name" placeholder="Ваше имя" required />
+  <input type="tel" name="phone" placeholder="Телефон" required />
+  <textarea name="message" rows="3" placeholder="Комментарий (необязательно)"></textarea>
+  <button type="submit" class="btn">Отправить заявку</button>
+</form>
+<div id="modal-success" class="form-success">Спасибо! Ваша заявка отправлена.</div>
+<div class="nav-header">
+  <img src="logo.svg" alt="Логотип" />
+  <h2>Принеслик С.В.</h2>
+</div>
+</div>
+</body>
+</html>
