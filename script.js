@@ -56,3 +56,20 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector(".side-nav-glass");
+    const navLinks = document.querySelectorAll(".side-nav-glass a");
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        // Проверка ширины экрана — только на мобильных
+        if (window.innerWidth <= 768) {
+          nav.classList.remove("show");
+          nav.classList.add("hidden");
+        }
+      });
+    });
+  });
+</script>
+
